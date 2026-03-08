@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
 <title>💖 Nosso Amor 💖</title>
 
@@ -12,30 +12,33 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial, sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
 body{
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+background:linear-gradient(135deg,#ff9a9e 0%,#fad0c4 100%);
 text-align:center;
 min-height:100vh;
 display:flex;
 flex-direction:column;
+padding-bottom:100px;
 }
 
 /* HEADER */
 
 header{
-padding:40px 20px;
+padding:30px 15px;
 color:white;
 }
 
 header h1{
-font-size:clamp(24px, 8vw, 40px);
+font-size:clamp(28px, 8vw, 40px);
+margin-bottom:10px;
 }
 
 header p{
-font-size:clamp(14px, 4vw, 16px);
+font-size:clamp(16px, 4vw, 18px);
 }
 
 /* CAROUSEL */
@@ -44,19 +47,22 @@ font-size:clamp(14px, 4vw, 16px);
 width:100%;
 overflow:hidden;
 position:relative;
-margin:40px 0;
+margin:20px 0;
 }
 
 .carousel-track{
 display:flex;
-transition:.5s;
+transition:transform 0.5s ease;
 }
 
 .slide{
 min-width:100%;
-padding:clamp(40px, 10vw, 60px) 20px;
+padding:clamp(30px, 8vw, 60px) 15px;
 font-size:clamp(18px, 5vw, 22px);
 color:white;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .slide:nth-child(1){background:#ff6f91;}
@@ -76,32 +82,41 @@ padding:0 10px;
 
 .carousel-buttons button{
 border:none;
-padding:clamp(8px, 3vw, 15px) clamp(10px, 4vw, 15px);
-font-size:clamp(16px, 5vw, 20px);
+padding:clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px);
+font-size:clamp(18px, 5vw, 24px);
 cursor:pointer;
-border-radius:10px;
-background:white;
-opacity:0.8;
+border-radius:50px;
+background:rgba(255,255,255,0.9);
+color:#ff4d6d;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 /* CARDS */
 
+.cards-container h3{
+color:white;
+margin:20px 15px;
+font-size:clamp(18px, 4.5vw, 22px);
+text-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
-padding:20px;
+padding:15px;
 max-width:1200px;
-margin:auto;
+margin:0 auto;
 width:100%;
 }
 
 .card{
 background:white;
 padding:clamp(20px, 5vw, 30px);
-border-radius:15px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-transition:.3s;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+transition:transform 0.3s;
 }
 
 .card:hover{
@@ -110,95 +125,153 @@ transform:translateY(-5px);
 
 .card h3{
 color:#ff4d6d;
-margin-bottom:10px;
-font-size:clamp(16px, 4vw, 20px);
+margin-bottom:12px;
+font-size:clamp(18px, 4vw, 22px);
 }
 
 .card p{
+color:#444;
 font-size:clamp(14px, 3.5vw, 16px);
+line-height:1.5;
 }
 
 /* JOGO */
+
+.game-section h2{
+color:white;
+margin:20px 0 10px;
+font-size:clamp(22px, 6vw, 28px);
+text-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+
+#score{
+font-size:clamp(18px, 5vw, 22px);
+margin:10px;
+color:white;
+font-weight:bold;
+text-shadow:1px 1px 2px rgba(0,0,0,0.3);
+}
 
 #game{
 position:relative;
 width:100%;
 max-width:900px;
-height:clamp(300px, 60vw, 420px);
-margin:20px auto;
-background:linear-gradient(#ff9a9e,#fad0c4);
+height:clamp(300px, 65vw, 420px);
+margin:10px auto;
+background:linear-gradient(180deg, #87CEEB 0%, #98D8E8 100%);
 overflow:hidden;
-border-radius:10px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 touch-action:none;
+border:3px solid rgba(255,255,255,0.5);
 }
 
 .world{
 position:absolute;
 width:12000px;
 height:100%;
+will-change:transform;
 }
 
 .player{
 position:absolute;
-width:clamp(30px, 5vw, 40px);
-height:clamp(30px, 5vw, 40px);
+width:clamp(35px, 6vw, 45px);
+height:clamp(35px, 6vw, 45px);
 background:#ff4d6d;
 border-radius:50%;
 bottom:40px;
-}
-
-.platform{
-position:absolute;
-width:clamp(100px, 15vw, 150px);
-height:clamp(10px, 2vw, 15px);
-background:#a66b3d;
+left:50px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+z-index:10;
+border:3px solid white;
 }
 
 .ground{
 position:absolute;
 bottom:0;
 width:12000px;
-height:clamp(30px, 5vw, 40px);
-background:#8b5e3c;
+height:clamp(35px, 5vw, 45px);
+background:#8B5A2B;
+background:linear-gradient(180deg, #8B5A2B 0%, #5D3A1A 100%);
+border-top:3px solid #5D3A1A;
+}
+
+.platform{
+position:absolute;
+width:clamp(120px, 18vw, 170px);
+height:clamp(12px, 2.5vw, 18px);
+background:#8B5A2B;
+background:linear-gradient(180deg, #A0522D 0%, #8B4513 100%);
+border-radius:10px;
+border:2px solid #5D3A1A;
+box-shadow:0 5px 0 #5D3A1A;
 }
 
 .heart{
 position:absolute;
-font-size:clamp(16px, 4vw, 24px);
+font-size:clamp(20px, 5vw, 28px);
+filter:drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+z-index:5;
+animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
 }
 
 .spike{
 position:absolute;
-width:clamp(30px, 5vw, 40px);
-height:clamp(30px, 5vw, 40px);
-bottom:40px;
-background:red;
+width:clamp(35px, 6vw, 45px);
+height:clamp(35px, 6vw, 45px);
+bottom:clamp(35px, 5vw, 45px);
+background:#FF4136;
 clip-path:polygon(50% 0%,0% 100%,100% 100%);
+filter:drop-shadow(0 5px 5px rgba(0,0,0,0.3));
 }
 
 .enemy{
 position:absolute;
-width:clamp(25px, 4vw, 35px);
-height:clamp(25px, 4vw, 35px);
-background:#222;
+width:clamp(30px, 5vw, 40px);
+height:clamp(30px, 5vw, 40px);
+background:#2C3E50;
 border-radius:50%;
-bottom:40px;
+bottom:clamp(35px, 5vw, 45px);
+animation:moveEnemy 2s infinite alternate;
+border:2px solid white;
+}
+
+@keyframes moveEnemy{
+0%{transform:translateX(-5px);}
+100%{transform:translateX(5px);}
 }
 
 .tower{
 position:absolute;
-width:clamp(60px, 10vw, 100px);
-height:clamp(150px, 30vw, 250px);
-background:#8b5e3c;
+width:clamp(80px, 12vw, 120px);
+height:clamp(180px, 35vw, 280px);
+background:#8B5A2B;
+background:linear-gradient(90deg, #8B5A2B 0%, #5D3A1A 100%);
 bottom:0;
+border-radius:20px 20px 0 0;
+border:3px solid #5D3A1A;
 }
 
 .princess{
 position:absolute;
-width:clamp(30px, 5vw, 40px);
-height:clamp(30px, 5vw, 40px);
-background:#ff99cc;
+width:clamp(40px, 6vw, 50px);
+height:clamp(40px, 6vw, 50px);
+background:#FFB6C1;
 border-radius:50%;
+bottom:clamp(180px, 35vw, 280px);
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+border:3px solid white;
+animation:princessFloat 2s infinite ease-in-out;
+}
+
+@keyframes princessFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
 }
 
 .message{
@@ -207,70 +280,83 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.9);
 color:white;
 display:none;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-font-size:clamp(20px, 6vw, 32px);
+font-size:clamp(24px, 7vw, 36px);
 padding:20px;
 text-align:center;
+z-index:100;
+backdrop-filter:blur(5px);
 }
 
-#score{
+.message small{
 font-size:clamp(16px, 4vw, 20px);
-margin:10px;
+margin-top:20px;
+color:#ff4d6d;
 }
 
 /* CONTROLES */
 
-.controls{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:clamp(10px, 4vw, 20px);
-z-index:1000;
-background:rgba(255,255,255,0.2);
-padding:10px 20px;
-border-radius:50px;
-backdrop-filter:blur(5px);
-}
-
-.controls button{
-width:clamp(50px, 12vw, 70px);
-height:clamp(50px, 12vw, 70px);
-font-size:clamp(24px, 6vw, 30px);
-border:none;
-border-radius:15px;
-background:#ff4d6d;
-color:white;
-cursor:pointer;
-touch-action:manipulation;
--webkit-tap-highlight-color:transparent;
-}
-
-/* INSTRUÇÕES */
-
-.instructions{
+.controls-info{
 color:white;
 margin:10px;
-font-size:clamp(12px, 3.5vw, 14px);
+font-size:clamp(14px, 3.5vw, 16px);
 background:rgba(255,255,255,0.2);
-padding:8px 15px;
-border-radius:20px;
+padding:10px 20px;
+border-radius:30px;
 display:inline-block;
+backdrop-filter:blur(5px);
 }
 
 .key-hint{
 display:inline-block;
-background:rgba(255,255,255,0.3);
-padding:5px 10px;
-border-radius:8px;
+background:#ff4d6d;
+padding:5px 12px;
+border-radius:15px;
 margin:0 5px;
 font-weight:bold;
+color:white;
+}
+
+.controls{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:clamp(15px, 5vw, 25px);
+z-index:1000;
+background:rgba(255,255,255,0.25);
+padding:12px 25px;
+border-radius:60px;
+backdrop-filter:blur(10px);
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+border:2px solid rgba(255,255,255,0.5);
+}
+
+.controls button{
+width:clamp(60px, 15vw, 80px);
+height:clamp(60px, 15vw, 80px);
+font-size:clamp(28px, 7vw, 36px);
+border:none;
+border-radius:50px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+touch-action:manipulation;
+box-shadow:0 5px 0 #b3002d;
+transition:all 0.1s;
+font-weight:bold;
+border:2px solid white;
+}
+
+.controls button:active{
+transform:translateY(5px);
+box-shadow:0 2px 0 #b3002d;
 }
 
 </style>
@@ -286,64 +372,57 @@ font-weight:bold;
 <!-- CAROUSEL -->
 
 <section class="carousel">
-
 <div class="carousel-track" id="carouselTrack">
-<div class="slide">💖 O amor é a maior aventura, e eu estou vivendo ele do seu lado</div>
+<div class="slide">💖 O amor é a maior aventura, e eu estou vivendo ela do seu lado</div>
 <div class="slide">🌹 Cada momento vale ouro, espero criarmos mais juntos</div>
-<div class="slide">💌 Amor é cuidar e eu estou disposto a cuidar de você e do nosso amor.</div>
-<div class="slide">❤️ Nosso amor é infinito, tão infinito quanto um buraco negro, o maior do universo.</div>
+<div class="slide">💌 Amor é cuidar e eu estou disposto a cuidar de você e do nosso amor</div>
+<div class="slide">❤️ Nosso amor é infinito, tão infinito quanto um buraco negro</div>
 </div>
-
 <div class="carousel-buttons">
 <button onclick="prevSlide()">◀</button>
 <button onclick="nextSlide()">▶</button>
 </div>
-
 </section>
 
 <!-- CARDS -->
 
-<h3>💖 Posso não ser bom com as palavras, mais serei com o amor e minhas atitudes, e principalmente, com você!</h3>
+<div class="cards-container">
+<h3>💖 Posso não ser bom com palavras, mas serei com o amor e minhas atitudes, e principalmente, com você!</h3>
 <section class="cards">
-
 <div class="card">
 <h3>💖 Amor verdadeiro</h3>
 <p>Ele cresce todos os dias, e o meu está a todo momento com uma chama que clama seu nome, você é o meu amor verdadeiro.</p>
 </div>
-
 <div class="card">
 <h3>🌹 Momentos</h3>
 <p>Cada momento vira memória, e eu estou muito lisonjeado em fazer parte da sua, em criar memórias com você, te amo.</p>
 </div>
-
 <div class="card">
 <h3>💌 Carinho</h3>
-<p>Pequenos gestos fazem diferença, estou a partir de sempre fazendo você sorrir, você sempre foi e sempre será meu maior presente</p>
+<p>Pequenos gestos fazem diferença, estarei sempre fazendo você sorrir, você sempre foi e sempre será meu maior presente</p>
 </div>
-
 <div class="card">
 <h3>❤️ Sempre juntos</h3>
 <p>O importante é estarmos lado a lado, no amor e na doença, feliz dia das mulheres, para a minha mulher favorita</p>
 </div>
-
 </section>
+</div>
 
+<!-- JOGO -->
+
+<div class="game-section">
 <h2>💖 Para o meu amor 💖</h2>
-<div class="instructions">
-<span class="key-hint">← →</span> ou toque nos botões para mover |
-<span class="key-hint">⬆</span> ou clique para pular
+<div class="controls-info">
+<span class="key-hint">← →</span> Botões ou teclado <span class="key-hint">⬆</span> Pular
 </div>
 <div id="score">Corações: 0 / 99</div>
 
 <div id="game">
-
 <div class="world" id="world">
-
 <div class="ground"></div>
 <div class="player" id="player"></div>
 
 <!-- plataformas -->
-
 <div class="platform" style="left:400px;bottom:120px"></div>
 <div class="platform" style="left:900px;bottom:200px"></div>
 <div class="platform" style="left:1400px;bottom:250px"></div>
@@ -353,282 +432,314 @@ font-weight:bold;
 <div class="platform" style="left:3800px;bottom:260px"></div>
 
 <!-- espinhos -->
-
 <div class="spike" style="left:700px"></div>
 <div class="spike" style="left:1700px"></div>
 <div class="spike" style="left:3500px"></div>
 <div class="spike" style="left:5200px"></div>
 
 <!-- inimigos -->
-
 <div class="enemy" style="left:1200px"></div>
 <div class="enemy" style="left:2800px"></div>
 <div class="enemy" style="left:4800px"></div>
 <div class="enemy" style="left:6500px"></div>
 
 <!-- final -->
-
 <div class="tower" style="left:11000px"></div>
 <div class="princess" style="left:11020px;bottom:260px"></div>
 
 <div id="hearts"></div>
-
 </div>
-
 <div class="message" id="message"></div>
-
+</div>
 </div>
 
+<!-- CONTROLES -->
 <div class="controls">
-<button id="left">⬅</button>
-<button id="jump">⬆</button>
-<button id="right">➡</button>
+<button id="leftBtn" class="control-btn">⬅️</button>
+<button id="jumpBtn" class="control-btn">⬆️</button>
+<button id="rightBtn" class="control-btn">➡️</button>
 </div>
 
 <script>
-
-/* CAROUSEL */
-
-let index=0
-const track=document.getElementById("carouselTrack")
+// CAROUSEL
+let currentSlide = 0
+const track = document.getElementById("carouselTrack")
+const totalSlides = 4
 
 function updateCarousel(){
-track.style.transform="translateX(-"+index*100+"%)"
+track.style.transform = `translateX(-${currentSlide * 100}%)`
 }
 
 function nextSlide(){
-index++
-if(index>3) index=0
+currentSlide = (currentSlide + 1) % totalSlides
 updateCarousel()
 }
 
 function prevSlide(){
-index--
-if(index<0) index=3
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides
 updateCarousel()
 }
 
-setInterval(nextSlide,4000)
+setInterval(nextSlide, 5000)
 
-/* JOGO */
+// JOGO - VERSÃO CORRIGIDA PARA CELULAR
+const player = document.getElementById("player")
+const world = document.getElementById("world")
+const game = document.getElementById("game")
+const heartsContainer = document.getElementById("hearts")
+const message = document.getElementById("message")
+const scoreDisplay = document.getElementById("score")
 
-const player=document.getElementById("player")
-const world=document.getElementById("world")
-const platforms=document.querySelectorAll(".platform")
-const spikes=document.querySelectorAll(".spike")
-const enemies=document.querySelectorAll(".enemy")
-const princess=document.querySelector(".princess")
-const heartsContainer=document.getElementById("hearts")
-const message=document.getElementById("message")
-const scoreText=document.getElementById("score")
+// Posição do jogador
+let playerX = 100
+let playerY = 40 // Altura do chão
+let velocityY = 0
+let gravity = 0.5
+let isJumping = false
+let score = 0
+let gameWidth = game.offsetWidth
 
-let x=50
-let y=40
-let velocityY=0
-let gravity=0.5
-let jumping=false
-let score=0
+// Controles
+let leftPressed = false
+let rightPressed = false
 
-const keys={}
-
-/* gerar corações */
-
-for(let i=0;i<100;i++){
-
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="❤️"
-
-heart.style.left=Math.random()*10800+"px"
-heart.style.bottom=(60+Math.random()*300)+"px"
-
+// Criar corações
+for(let i = 0; i < 99; i++) {
+let heart = document.createElement("div")
+heart.className = "heart"
+heart.innerHTML = "❤️"
+heart.style.left = Math.random() * 11000 + "px"
+heart.style.bottom = (60 + Math.random() * 300) + "px"
 heartsContainer.appendChild(heart)
-
 }
 
-function die(){
+// Lista de elementos
+const platforms = document.querySelectorAll(".platform")
+const spikes = document.querySelectorAll(".spike")
+const enemies = document.querySelectorAll(".enemy")
+const princess = document.querySelector(".princess")
+const hearts = document.querySelectorAll(".heart")
 
-message.style.display="flex"
-message.innerHTML="💀 Você morreu<br>Reiniciando..."
+// CONTROLES DO TECLADO
+document.addEventListener("keydown", (e) => {
+if(e.key === "ArrowLeft") {
+e.preventDefault()
+leftPressed = true
+}
+if(e.key === "ArrowRight") {
+e.preventDefault()
+rightPressed = true
+}
+if(e.key === " " || e.key === "ArrowUp") {
+e.preventDefault()
+if(!isJumping) {
+velocityY = 12
+isJumping = true
+}
+}
+})
 
-setTimeout(()=>{
+document.addEventListener("keyup", (e) => {
+if(e.key === "ArrowLeft") {
+e.preventDefault()
+leftPressed = false
+}
+if(e.key === "ArrowRight") {
+e.preventDefault()
+rightPressed = false
+}
+})
+
+// CONTROLES DOS BOTÕES (CELULAR)
+const leftBtn = document.getElementById("leftBtn")
+const rightBtn = document.getElementById("rightBtn")
+const jumpBtn = document.getElementById("jumpBtn")
+
+// Botão esquerdo
+leftBtn.addEventListener("mousedown", (e) => {
+e.preventDefault()
+leftPressed = true
+})
+leftBtn.addEventListener("mouseup", () => leftPressed = false)
+leftBtn.addEventListener("mouseleave", () => leftPressed = false)
+leftBtn.addEventListener("touchstart", (e) => {
+e.preventDefault()
+leftPressed = true
+})
+leftBtn.addEventListener("touchend", (e) => {
+e.preventDefault()
+leftPressed = false
+})
+leftBtn.addEventListener("touchcancel", (e) => {
+e.preventDefault()
+leftPressed = false
+})
+
+// Botão direito
+rightBtn.addEventListener("mousedown", (e) => {
+e.preventDefault()
+rightPressed = true
+})
+rightBtn.addEventListener("mouseup", () => rightPressed = false)
+rightBtn.addEventListener("mouseleave", () => rightPressed = false)
+rightBtn.addEventListener("touchstart", (e) => {
+e.preventDefault()
+rightPressed = true
+})
+rightBtn.addEventListener("touchend", (e) => {
+e.preventDefault()
+rightPressed = false
+})
+rightBtn.addEventListener("touchcancel", (e) => {
+e.preventDefault()
+rightPressed = false
+})
+
+// Botão pular
+jumpBtn.addEventListener("click", (e) => {
+e.preventDefault()
+if(!isJumping) {
+velocityY = 12
+isJumping = true
+}
+})
+
+jumpBtn.addEventListener("touchstart", (e) => {
+e.preventDefault()
+if(!isJumping) {
+velocityY = 12
+isJumping = true
+}
+})
+
+// Função para verificar colisão com plataformas
+function checkPlatformCollision() {
+let onPlatform = false
+let playerBottom = game.offsetHeight - playerY
+
+platforms.forEach(platform => {
+let platformLeft = platform.offsetLeft
+let platformRight = platformLeft + platform.offsetWidth
+let platformTop = platform.offsetTop
+let platformBottom = platformTop + platform.offsetHeight
+
+// Verificar se o player está sobre a plataforma
+if(playerX + 35 > platformLeft && 
+   playerX < platformRight && 
+   playerBottom >= platformTop - 5 && 
+   playerBottom <= platformTop + 15 && 
+   velocityY <= 0) {
+   
+   playerY = game.offsetHeight - platformTop - 35
+   velocityY = 0
+   isJumping = false
+   onPlatform = true
+}
+})
+
+return onPlatform
+}
+
+// Função para verificar coletáveis e obstáculos
+function checkCollisions() {
+// Corações
+hearts.forEach(heart => {
+if(heart.style.display !== "none") {
+let heartX = heart.offsetLeft
+let heartY = heart.offsetTop
+let playerBottom = game.offsetHeight - playerY
+
+if(Math.abs(playerX - heartX) < 40 && 
+   Math.abs(playerBottom - heartY) < 40) {
+   heart.style.display = "none"
+   score++
+   scoreDisplay.innerText = "Corações: " + score + " / 99"
+}
+}
+})
+
+// Espinhos
+spikes.forEach(spike => {
+let spikeX = spike.offsetLeft
+if(Math.abs(playerX - spikeX) < 30 && playerY <= 50) {
+die()
+}
+})
+
+// Inimigos
+enemies.forEach(enemy => {
+if(enemy.style.display !== "none") {
+let enemyX = enemy.offsetLeft
+if(Math.abs(playerX - enemyX) < 35 && playerY <= 50) {
+die()
+}
+}
+})
+
+// Princesa (vitória)
+let princessX = princess.offsetLeft
+if(Math.abs(playerX - princessX) < 50) {
+message.style.display = "flex"
+message.innerHTML = "💖 Você salvou seu amor! 💖<br><small>Parabéns, meu amor!</small>"
+}
+}
+
+function die() {
+message.style.display = "flex"
+message.innerHTML = "💀 Você morreu...<br><small>Mas o amor sempre vence! Tentar de novo?</small>"
+setTimeout(() => {
 location.reload()
-},2000)
-
+}, 2000)
 }
 
-// Controles de teclado
-document.addEventListener("keydown",e=>{
-if(e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === " ") {
-e.preventDefault() // Previne rolagem da página
+// Loop do jogo
+function gameLoop() {
+// Movimento horizontal
+if(leftPressed) playerX -= 4
+if(rightPressed) playerX += 4
+
+// Limites
+if(playerX < 0) playerX = 0
+if(playerX > 11500) playerX = 11500
+
+// Gravidade
+velocityY -= gravity
+playerY += velocityY
+
+// Limite do chão
+if(playerY < 40) {
+playerY = 40
+velocityY = 0
+isJumping = false
 }
 
-keys[e.key]=true
+// Verificar colisão com plataformas
+checkPlatformCollision()
 
-if(e.key===" " && !jumping){
-velocityY=12
-jumping=true
-}
+// Atualizar posição do player
+player.style.left = playerX + "px"
+player.style.bottom = playerY + "px"
 
-})
+// Mover o mundo (câmera)
+let cameraX = -(playerX - game.offsetWidth/2 + 20)
+if(cameraX > 0) cameraX = 0
+if(cameraX < -11000) cameraX = -11000
+world.style.left = cameraX + "px"
 
-document.addEventListener("keyup",e=>{
-keys[e.key]=false
-})
-
-// Controles de toque para celular
-const leftBtn=document.getElementById("left")
-const rightBtn=document.getElementById("right")
-const jumpBtn=document.getElementById("jump")
-
-// Eventos de toque e mouse
-function setupButton(button, key) {
-button.addEventListener('mousedown', (e) => {
-e.preventDefault()
-keys[key] = true
-})
-button.addEventListener('mouseup', () => {
-keys[key] = false
-})
-button.addEventListener('mouseleave', () => {
-keys[key] = false
-})
-button.addEventListener('touchstart', (e) => {
-e.preventDefault()
-keys[key] = true
-})
-button.addEventListener('touchend', (e) => {
-e.preventDefault()
-keys[key] = false
-})
-button.addEventListener('touchcancel', (e) => {
-e.preventDefault()
-keys[key] = false
-})
-}
-
-setupButton(leftBtn, "ArrowLeft")
-setupButton(rightBtn, "ArrowRight")
-
-jumpBtn.addEventListener('mousedown', (e) => {
-e.preventDefault()
-if(!jumping){
-velocityY=12
-jumping=true
-}
-})
-jumpBtn.addEventListener('touchstart', (e) => {
-e.preventDefault()
-if(!jumping){
-velocityY=12
-jumping=true
-}
-})
-
-function gameLoop(){
-
-if(keys["ArrowRight"]) x+=4
-if(keys["ArrowLeft"]) x-=4
-
-velocityY-=gravity
-y+=velocityY
-
-if(y<40){
-y=40
-velocityY=0
-jumping=false
-}
-
-/* plataformas */
-
-platforms.forEach(p=>{
-
-let left=p.offsetLeft
-let right=left+p.offsetWidth
-let top=p.offsetTop
-let playerBottom=420-y
-
-if(
-x+40>left &&
-x<right &&
-playerBottom>=top &&
-playerBottom<=top+20 &&
-velocityY<=0
-){
-y=420-top
-velocityY=0
-jumping=false
-}
-
-})
-
-player.style.left=x+"px"
-player.style.bottom=y+"px"
-
-world.style.left=-(x-200)+"px"
-
-/* corações */
-
-document.querySelectorAll(".heart").forEach(heart=>{
-
-if(heart.style.display==="none") return
-
-let hx=heart.offsetLeft
-let hy=heart.offsetTop
-
-if(Math.abs(x-hx)<40 && Math.abs((420-y)-hy)<40){
-
-heart.style.display="none"
-score++
-scoreText.innerText="Corações: "+score+" / 100"
-
-}
-
-})
-
-/* espinhos */
-
-spikes.forEach(s=>{
-if(Math.abs(x-s.offsetLeft)<30 && y<=45){
-die()
-}
-})
-
-/* inimigos */
-
-enemies.forEach(e=>{
-
-let ex=e.offsetLeft
-
-if(y>60 && Math.abs(x-ex)<35){
-
-e.style.display="none"
-velocityY=10
-
-}else if(Math.abs(x-ex)<35 && y<=60){
-
-die()
-
-}
-
-})
-
-/* final */
-
-if(Math.abs(x-princess.offsetLeft)<50){
-
-message.style.display="flex"
-message.innerHTML="💖 Você salvou seu amor!"
-
-}
+// Verificar outras colisões
+checkCollisions()
 
 requestAnimationFrame(gameLoop)
-
 }
 
+// Iniciar jogo
 gameLoop()
 
-</script>
+// Atualizar gameWidth quando a tela girar
+window.addEventListener("resize", () => {
+gameWidth = game.offsetWidth
+})
 
+</script>
 </body>
 </html>
