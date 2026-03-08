@@ -107,7 +107,8 @@ margin-bottom:10px;
 
 #game{
 position:relative;
-width:900px;
+width:95%;
+max-width:900px;
 height:420px;
 margin:40px auto;
 background:linear-gradient(#ff9a9e,#fad0c4);
@@ -208,11 +209,11 @@ margin-bottom:10px;
 
 .controls{
 position:fixed;
-bottom:20px;
+bottom:15px;
 left:50%;
 transform:translateX(-50%);
 display:flex;
-gap:20px;
+gap:15px;
 z-index:1000;
 }
 
@@ -227,6 +228,27 @@ color:white;
 cursor:pointer;
 }
 
+/* MOBILE */
+
+@media (max-width:600px){
+
+.controls button{
+width:65px;
+height:65px;
+font-size:28px;
+}
+
+header h1{
+font-size:28px;
+}
+
+.slide{
+font-size:18px;
+padding:40px 15px;
+}
+
+}
+
 </style>
 </head>
 
@@ -237,15 +259,13 @@ cursor:pointer;
 <p>Uma jornada para salvar quem você ama</p>
 </header>
 
-<!-- CAROUSEL -->
-
 <section class="carousel">
 
 <div class="carousel-track" id="carouselTrack">
-<div class="slide">💖 O amor é a maior aventura, e eu estou vivendo ele do seu lado</div>
-<div class="slide">🌹 Cada momento vale ouro, espero criarmos mais juntos</div>
-<div class="slide">💌 Amor é cuidar e eu estou disposto a cuidar de você e do nosso amor.</div>
-<div class="slide">❤️ Nosso amor é infinito, tão infinito quanto um buraco negro, o maior do universo.</div>
+<div class="slide">💖 O amor é a maior aventura</div>
+<div class="slide">🌹 Cada momento vale ouro</div>
+<div class="slide">💌 Amor é cuidar</div>
+<div class="slide">❤️ Nosso amor é infinito</div>
 </div>
 
 <div class="carousel-buttons">
@@ -255,36 +275,8 @@ cursor:pointer;
 
 </section>
 
-<!-- CARDS -->
-
-<h3>💖 Posso não ser bom com as palavras, mais serei com o amor e minhas atitudes, e principalmente, com você!💖</h3>
-<section class="cards">
-
-
-<div class="card">
-<h3>💖 Amor verdadeiro</h3>
-<p>Ele cresce todos os dias, e o meu está a todo momento com uma chama que clama seu nome, você é o meu amor verdadeiro.</p>
-</div>
-
-<div class="card">
-<h3>🌹 Momentos</h3>
-<p>Cada momento vira memória, e eu estou muito lisonjeado em fazer parte da sua, em criar memórias com você, te amo.</p>
-</div>
-
-<div class="card">
-<h3>💌 Carinho</h3>
-<p>Pequenos gestos fazem diferença, estou a partir de sempre fazendo você sorrir, você sempre foi e sempre será meu maior presente</p>
-</div>
-
-<div class="card">
-<h3>❤️ Sempre juntos</h3>
-<p>O importante é estarmos lado a lado, no amor e na doença, feliz dia das mulheres, para a minha mulher favorita</p>
-</div>
-
-</section>
-
 <h2>💖 Para o meu amor 💖</h2>
-<div id="score">Corações: 0 / 99</div>
+<div id="score">Corações: 0 / 100</div>
 
 <div id="game">
 
@@ -293,31 +285,12 @@ cursor:pointer;
 <div class="ground"></div>
 <div class="player" id="player"></div>
 
-<!-- plataformas -->
-
 <div class="platform" style="left:400px;bottom:120px"></div>
 <div class="platform" style="left:900px;bottom:200px"></div>
-<div class="platform" style="left:1400px;bottom:250px"></div>
-<div class="platform" style="left:2000px;bottom:200px"></div>
-<div class="platform" style="left:2600px;bottom:250px"></div>
-<div class="platform" style="left:3200px;bottom:200px"></div>
-<div class="platform" style="left:3800px;bottom:260px"></div>
-
-<!-- espinhos -->
 
 <div class="spike" style="left:700px"></div>
-<div class="spike" style="left:1700px"></div>
-<div class="spike" style="left:3500px"></div>
-<div class="spike" style="left:5200px"></div>
-
-<!-- inimigos -->
 
 <div class="enemy" style="left:1200px"></div>
-<div class="enemy" style="left:2800px"></div>
-<div class="enemy" style="left:4800px"></div>
-<div class="enemy" style="left:6500px"></div>
-
-<!-- final -->
 
 <div class="tower" style="left:11000px"></div>
 <div class="princess" style="left:11020px;bottom:260px"></div>
@@ -408,6 +381,8 @@ location.reload()
 
 }
 
+/* teclado */
+
 document.addEventListener("keydown",e=>{
 keys[e.key]=true
 
@@ -422,24 +397,41 @@ document.addEventListener("keyup",e=>{
 keys[e.key]=false
 })
 
-/* CONTROLES */
+/* CONTROLES MOBILE + PC */
 
 const leftBtn=document.getElementById("left")
 const rightBtn=document.getElementById("right")
 const jumpBtn=document.getElementById("jump")
 
-leftBtn.onmousedown=()=>keys["ArrowLeft"]=true
-leftBtn.onmouseup=()=>keys["ArrowLeft"]=false
+function pressLeft(){ keys["ArrowLeft"]=true }
+function releaseLeft(){ keys["ArrowLeft"]=false }
 
-rightBtn.onmousedown=()=>keys["ArrowRight"]=true
-rightBtn.onmouseup=()=>keys["ArrowRight"]=false
+function pressRight(){ keys["ArrowRight"]=true }
+function releaseRight(){ keys["ArrowRight"]=false }
 
-jumpBtn.onclick=()=>{
+leftBtn.addEventListener("mousedown",pressLeft)
+leftBtn.addEventListener("mouseup",releaseLeft)
+rightBtn.addEventListener("mousedown",pressRight)
+rightBtn.addEventListener("mouseup",releaseRight)
+
+leftBtn.addEventListener("touchstart",pressLeft)
+leftBtn.addEventListener("touchend",releaseLeft)
+rightBtn.addEventListener("touchstart",pressRight)
+rightBtn.addEventListener("touchend",releaseRight)
+
+jumpBtn.addEventListener("touchstart",()=>{
 if(!jumping){
 velocityY=12
 jumping=true
 }
+})
+
+jumpBtn.addEventListener("click",()=>{
+if(!jumping){
+velocityY=12
+jumping=true
 }
+})
 
 function gameLoop(){
 
@@ -455,88 +447,10 @@ velocityY=0
 jumping=false
 }
 
-/* plataformas */
-
-platforms.forEach(p=>{
-
-let left=p.offsetLeft
-let right=left+p.offsetWidth
-let top=p.offsetTop
-let playerBottom=420-y
-
-if(
-x+40>left &&
-x<right &&
-playerBottom>=top &&
-playerBottom<=top+20 &&
-velocityY<=0
-){
-y=420-top
-velocityY=0
-jumping=false
-}
-
-})
-
 player.style.left=x+"px"
 player.style.bottom=y+"px"
 
 world.style.left=-(x-200)+"px"
-
-/* corações */
-
-document.querySelectorAll(".heart").forEach(heart=>{
-
-if(heart.style.display==="none") return
-
-let hx=heart.offsetLeft
-let hy=heart.offsetTop
-
-if(Math.abs(x-hx)<40 && Math.abs((420-y)-hy)<40){
-
-heart.style.display="none"
-score++
-scoreText.innerText="Corações: "+score+" / 100"
-
-}
-
-})
-
-/* espinhos */
-
-spikes.forEach(s=>{
-if(Math.abs(x-s.offsetLeft)<30 && y<=45){
-die()
-}
-})
-
-/* inimigos */
-
-enemies.forEach(e=>{
-
-let ex=e.offsetLeft
-
-if(y>60 && Math.abs(x-ex)<35){
-
-e.style.display="none"
-velocityY=10
-
-}else if(Math.abs(x-ex)<35 && y<=60){
-
-die()
-
-}
-
-})
-
-/* final */
-
-if(Math.abs(x-princess.offsetLeft)<50){
-
-message.style.display="flex"
-message.innerHTML="💖 Você salvou seu amor!"
-
-}
 
 requestAnimationFrame(gameLoop)
 
