@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>💖 Nosso Amor 💖</title>
 
@@ -18,6 +18,9 @@ font-family:Arial;
 body{
 background:linear-gradient(135deg,#ff9a9e,#fad0c4);
 text-align:center;
+min-height:100vh;
+display:flex;
+flex-direction:column;
 }
 
 /* HEADER */
@@ -28,7 +31,11 @@ color:white;
 }
 
 header h1{
-font-size:40px;
+font-size:clamp(24px, 8vw, 40px);
+}
+
+header p{
+font-size:clamp(14px, 4vw, 16px);
 }
 
 /* CAROUSEL */
@@ -47,8 +54,8 @@ transition:.5s;
 
 .slide{
 min-width:100%;
-padding:60px 20px;
-font-size:22px;
+padding:clamp(40px, 10vw, 60px) 20px;
+font-size:clamp(18px, 5vw, 22px);
 color:white;
 }
 
@@ -64,31 +71,34 @@ width:100%;
 display:flex;
 justify-content:space-between;
 transform:translateY(-50%);
+padding:0 10px;
 }
 
 .carousel-buttons button{
 border:none;
-padding:10px 15px;
-font-size:20px;
+padding:clamp(8px, 3vw, 15px) clamp(10px, 4vw, 15px);
+font-size:clamp(16px, 5vw, 20px);
 cursor:pointer;
 border-radius:10px;
 background:white;
+opacity:0.8;
 }
 
 /* CARDS */
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-padding:40px;
-max-width:1000px;
+padding:20px;
+max-width:1200px;
 margin:auto;
+width:100%;
 }
 
 .card{
 background:white;
-padding:30px;
+padding:clamp(20px, 5vw, 30px);
 border-radius:15px;
 box-shadow:0 10px 20px rgba(0,0,0,0.1);
 transition:.3s;
@@ -101,18 +111,25 @@ transform:translateY(-5px);
 .card h3{
 color:#ff4d6d;
 margin-bottom:10px;
+font-size:clamp(16px, 4vw, 20px);
+}
+
+.card p{
+font-size:clamp(14px, 3.5vw, 16px);
 }
 
 /* JOGO */
 
 #game{
 position:relative;
-width:900px;
-height:420px;
-margin:40px auto;
+width:100%;
+max-width:900px;
+height:clamp(300px, 60vw, 420px);
+margin:20px auto;
 background:linear-gradient(#ff9a9e,#fad0c4);
 overflow:hidden;
 border-radius:10px;
+touch-action:none;
 }
 
 .world{
@@ -123,8 +140,8 @@ height:100%;
 
 .player{
 position:absolute;
-width:40px;
-height:40px;
+width:clamp(30px, 5vw, 40px);
+height:clamp(30px, 5vw, 40px);
 background:#ff4d6d;
 border-radius:50%;
 bottom:40px;
@@ -132,8 +149,8 @@ bottom:40px;
 
 .platform{
 position:absolute;
-width:150px;
-height:15px;
+width:clamp(100px, 15vw, 150px);
+height:clamp(10px, 2vw, 15px);
 background:#a66b3d;
 }
 
@@ -141,19 +158,19 @@ background:#a66b3d;
 position:absolute;
 bottom:0;
 width:12000px;
-height:40px;
+height:clamp(30px, 5vw, 40px);
 background:#8b5e3c;
 }
 
 .heart{
 position:absolute;
-font-size:24px;
+font-size:clamp(16px, 4vw, 24px);
 }
 
 .spike{
 position:absolute;
-width:40px;
-height:40px;
+width:clamp(30px, 5vw, 40px);
+height:clamp(30px, 5vw, 40px);
 bottom:40px;
 background:red;
 clip-path:polygon(50% 0%,0% 100%,100% 100%);
@@ -161,8 +178,8 @@ clip-path:polygon(50% 0%,0% 100%,100% 100%);
 
 .enemy{
 position:absolute;
-width:35px;
-height:35px;
+width:clamp(25px, 4vw, 35px);
+height:clamp(25px, 4vw, 35px);
 background:#222;
 border-radius:50%;
 bottom:40px;
@@ -170,16 +187,16 @@ bottom:40px;
 
 .tower{
 position:absolute;
-width:100px;
-height:250px;
+width:clamp(60px, 10vw, 100px);
+height:clamp(150px, 30vw, 250px);
 background:#8b5e3c;
 bottom:0;
 }
 
 .princess{
 position:absolute;
-width:40px;
-height:40px;
+width:clamp(30px, 5vw, 40px);
+height:clamp(30px, 5vw, 40px);
 background:#ff99cc;
 border-radius:50%;
 }
@@ -196,12 +213,14 @@ display:none;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-font-size:32px;
+font-size:clamp(20px, 6vw, 32px);
+padding:20px;
+text-align:center;
 }
 
 #score{
-font-size:20px;
-margin-bottom:10px;
+font-size:clamp(16px, 4vw, 20px);
+margin:10px;
 }
 
 /* CONTROLES */
@@ -212,19 +231,46 @@ bottom:20px;
 left:50%;
 transform:translateX(-50%);
 display:flex;
-gap:20px;
+gap:clamp(10px, 4vw, 20px);
 z-index:1000;
+background:rgba(255,255,255,0.2);
+padding:10px 20px;
+border-radius:50px;
+backdrop-filter:blur(5px);
 }
 
 .controls button{
-width:70px;
-height:70px;
-font-size:30px;
+width:clamp(50px, 12vw, 70px);
+height:clamp(50px, 12vw, 70px);
+font-size:clamp(24px, 6vw, 30px);
 border:none;
 border-radius:15px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
+touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
+}
+
+/* INSTRUÇÕES */
+
+.instructions{
+color:white;
+margin:10px;
+font-size:clamp(12px, 3.5vw, 14px);
+background:rgba(255,255,255,0.2);
+padding:8px 15px;
+border-radius:20px;
+display:inline-block;
+}
+
+.key-hint{
+display:inline-block;
+background:rgba(255,255,255,0.3);
+padding:5px 10px;
+border-radius:8px;
+margin:0 5px;
+font-weight:bold;
 }
 
 </style>
@@ -260,7 +306,6 @@ cursor:pointer;
 <h3>💖 Posso não ser bom com as palavras, mais serei com o amor e minhas atitudes, e principalmente, com você!</h3>
 <section class="cards">
 
-
 <div class="card">
 <h3>💖 Amor verdadeiro</h3>
 <p>Ele cresce todos os dias, e o meu está a todo momento com uma chama que clama seu nome, você é o meu amor verdadeiro.</p>
@@ -284,6 +329,10 @@ cursor:pointer;
 </section>
 
 <h2>💖 Para o meu amor 💖</h2>
+<div class="instructions">
+<span class="key-hint">← →</span> ou toque nos botões para mover |
+<span class="key-hint">⬆</span> ou clique para pular
+</div>
 <div id="score">Corações: 0 / 99</div>
 
 <div id="game">
@@ -408,7 +457,12 @@ location.reload()
 
 }
 
+// Controles de teclado
 document.addEventListener("keydown",e=>{
+if(e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === " ") {
+e.preventDefault() // Previne rolagem da página
+}
+
 keys[e.key]=true
 
 if(e.key===" " && !jumping){
@@ -422,24 +476,54 @@ document.addEventListener("keyup",e=>{
 keys[e.key]=false
 })
 
-/* CONTROLES */
-
+// Controles de toque para celular
 const leftBtn=document.getElementById("left")
 const rightBtn=document.getElementById("right")
 const jumpBtn=document.getElementById("jump")
 
-leftBtn.onmousedown=()=>keys["ArrowLeft"]=true
-leftBtn.onmouseup=()=>keys["ArrowLeft"]=false
+// Eventos de toque e mouse
+function setupButton(button, key) {
+button.addEventListener('mousedown', (e) => {
+e.preventDefault()
+keys[key] = true
+})
+button.addEventListener('mouseup', () => {
+keys[key] = false
+})
+button.addEventListener('mouseleave', () => {
+keys[key] = false
+})
+button.addEventListener('touchstart', (e) => {
+e.preventDefault()
+keys[key] = true
+})
+button.addEventListener('touchend', (e) => {
+e.preventDefault()
+keys[key] = false
+})
+button.addEventListener('touchcancel', (e) => {
+e.preventDefault()
+keys[key] = false
+})
+}
 
-rightBtn.onmousedown=()=>keys["ArrowRight"]=true
-rightBtn.onmouseup=()=>keys["ArrowRight"]=false
+setupButton(leftBtn, "ArrowLeft")
+setupButton(rightBtn, "ArrowRight")
 
-jumpBtn.onclick=()=>{
+jumpBtn.addEventListener('mousedown', (e) => {
+e.preventDefault()
 if(!jumping){
 velocityY=12
 jumping=true
 }
+})
+jumpBtn.addEventListener('touchstart', (e) => {
+e.preventDefault()
+if(!jumping){
+velocityY=12
+jumping=true
 }
+})
 
 function gameLoop(){
 
@@ -548,3 +632,4 @@ gameLoop()
 
 </body>
 </html>
+
